@@ -1,0 +1,46 @@
+{
+  "name": "Morning Work Routine",
+  "description": "Automatically switch to work mode and prepare for the day",
+  "trigger": {
+    "type": "time",
+    "value": {
+      "time": "08:00",
+      "weekdays_only": true
+    }
+  },
+  "conditions": {
+    "location": "home",
+    "device_connected": ["work_laptop", "external_monitor"]
+  },
+  "actions": [
+    {
+      "type": "mode_switch",
+      "mode": "work",
+      "message": "Good morning! Switching to work mode."
+    },
+    {
+      "type": "notification",
+      "title": "Work Day Started",
+      "message": "Your work context is now active. Today's priorities are loaded."
+    },
+    {
+      "type": "app_action",
+      "app": "calendar",
+      "action": "show_today_schedule"
+    },
+    {
+      "type": "app_action", 
+      "app": "email",
+      "action": "check_urgent_messages"
+    },
+    {
+      "type": "environment_control",
+      "actions": [
+        {"device": "lights", "action": "set_brightness", "value": 80},
+        {"device": "music", "action": "play_focus_playlist"}
+      ]
+    }
+  ],
+  "user_customizable": true,
+  "priority": 1
+}
