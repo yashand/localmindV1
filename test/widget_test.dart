@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:localmind/models/app_state.dart';
 import 'package:localmind/models/user_profile.dart';
 import 'package:localmind/models/chat_message.dart';
+import 'package:localmind/services/troubleshooting_service.dart';
 
 void main() {
   group('AppState Tests', () {
@@ -99,6 +100,26 @@ void main() {
       expect(settings.allowContactAccess, isFalse);
       expect(settings.encryptLocalData, isTrue);
       expect(settings.dataRetentionDays, 30);
+    });
+  });
+
+  group('Troubleshooting Tests', () {
+    test('should create troubleshooting service', () {
+      final service = TroubleshootingService();
+      expect(service, isNotNull);
+    });
+
+    test('should create diagnostic result with proper fields', () {
+      final result = DiagnosticResult(
+        title: 'Test',
+        description: 'Description',
+        status: DiagnosticStatus.passed,
+        solutions: ['solution'],
+      );
+      
+      expect(result.title, 'Test');
+      expect(result.status, DiagnosticStatus.passed);
+      expect(result.solutions.length, 1);
     });
   });
 }

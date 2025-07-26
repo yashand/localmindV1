@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../models/app_state.dart';
 import '../services/llm_service.dart';
 import '../utils/app_theme.dart';
+import 'troubleshooting_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -299,6 +300,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onTap: _showHelp,
             ),
             ListTile(
+              leading: const Icon(Icons.build),
+              title: const Text('Troubleshooting'),
+              subtitle: const Text('Diagnose and fix common issues'),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: _openTroubleshooting,
+            ),
+            ListTile(
               leading: const Icon(Icons.code),
               title: const Text('Open Source'),
               subtitle: const Text('View source code on GitHub'),
@@ -443,15 +451,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
             'Privacy:\n'
             '• Check the Privacy Dashboard for data access logs\n'
             '• Revoke permissions anytime\n'
-            '• Delete data selectively or completely',
+            '• Delete data selectively or completely\n\n'
+            'Having Issues?\n'
+            '• Use the Troubleshooting tool for automatic diagnostics\n'
+            '• Check common solutions for connection, voice, and automation problems',
           ),
         ),
         actions: [
+          TextButton(
+            onPressed: _openTroubleshooting,
+            child: const Text('Troubleshooting'),
+          ),
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: const Text('Close'),
           ),
         ],
+      ),
+    );
+  }
+
+  void _openTroubleshooting() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const TroubleshootingScreen(),
       ),
     );
   }

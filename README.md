@@ -201,6 +201,41 @@ dependencies:
 - **Connection Pooling** for Ollama API calls
 - **Battery Optimization** with intelligent wake locks
 
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**Ollama Connection Failed**
+- Verify Ollama is running: `ollama list` 
+- Check firewall settings allow port 11434
+- For Tailscale: Ensure both devices are connected
+
+**Voice Recognition Not Working**
+- Grant microphone permissions
+- Test device microphone in other apps
+- Check speech_to_text package compatibility
+
+**App Automation Failing**
+- Enable Accessibility Service (Android)
+- Grant necessary system permissions
+- Verify target apps are installed
+
+### Using the Troubleshooting Tool
+
+LocalMind includes a built-in troubleshooting tool that automatically diagnoses common issues:
+
+1. **Access Troubleshooting**: Go to Settings → Troubleshooting
+2. **Run Diagnostics**: The tool automatically checks all major components
+3. **Review Results**: Get detailed status for each system component
+4. **Follow Solutions**: Step-by-step fixes for any issues found
+5. **Export Report**: Copy diagnostic report for further analysis
+
+The troubleshooting tool checks:
+- Ollama connection and model availability
+- Microphone permissions and speech recognition
+- App automation capabilities and permissions
+- System information and compatibility
+
 ## 🧪 Testing
 
 ```bash
