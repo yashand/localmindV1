@@ -1,0 +1,79 @@
+name: localmind
+description: A privacy-focused AI assistant mobile app that runs locally or via personal cloud.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  
+  # HTTP requests for Ollama API
+  http: ^1.1.0
+  
+  # Voice to text
+  speech_to_text: ^6.3.0
+  
+  # Local database
+  sqflite: ^2.3.0
+  
+  # Location services
+  geolocator: ^10.1.0
+  
+  # Secure storage
+  flutter_secure_storage: ^9.0.0
+  
+  # Permissions
+  permission_handler: ^11.0.1
+  
+  # TensorFlow Lite for ML
+  tflite_flutter: ^0.10.4
+  
+  # Device info
+  device_info_plus: ^9.1.0
+  
+  # Package info
+  package_info_plus: ^4.2.0
+  
+  # Usage stats (Android)
+  usage_stats: ^1.3.0
+  
+  # Path provider
+  path_provider: ^2.1.1
+  
+  # Crypto for encryption
+  crypto: ^3.0.3
+  
+  # JSON annotation
+  json_annotation: ^4.8.1
+  
+  # State management
+  provider: ^6.0.5
+  
+  # Logging
+  logger: ^2.0.2+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.7
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/icons/
+    - assets/models/
+    - assets/knowledge/
+  
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+        - asset: fonts/Roboto-Bold.ttf
+          weight: 700
