@@ -7,10 +7,10 @@ import 'services/privacy_service.dart';
 import 'services/automation_service.dart';
 import 'models/user_profile.dart';
 import 'models/app_state.dart';
-import 'ui/screens/home_screen.dart';
+import 'ui/screens/chat_screen.dart';
 import 'ui/screens/privacy_dashboard_screen.dart';
 import 'ui/screens/settings_screen.dart';
-import 'utils/app_theme.dart';
+import 'ui/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,9 +53,9 @@ class LocalMindApp extends StatelessWidget {
         builder: (context, appState, child) {
           return MaterialApp(
             title: 'LocalMind',
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: appState.themeMode,
+            theme: PalantirTheme.darkTheme,
+            darkTheme: PalantirTheme.darkTheme,
+            themeMode: ThemeMode.dark,
             debugShowCheckedModeBanner: false,
             home: const MainNavigator(),
           );
@@ -76,7 +76,7 @@ class _MainNavigatorState extends State<MainNavigator> {
   int _currentIndex = 0;
   
   final List<Widget> _screens = [
-    const HomeScreen(),
+    const ChatScreen(),
     const PrivacyDashboardScreen(),
     const SettingsScreen(),
   ];
@@ -84,28 +84,47 @@ class _MainNavigatorState extends State<MainNavigator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: PalantirTheme.backgroundDeep,
       body: IndexedStack(
         index: _currentIndex,
         children: _screens,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: PalantirTheme.backgroundCard,
+          border: Border(
+            top: BorderSide(
+              color: PalantirTheme.borderColor,
+              width: 1,
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.privacy_tip),
-            label: 'Privacy',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
+        ),
+        child: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) => setState(() => _currentIndex = index),
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.transparent,
+          selectedItemColor: PalantirTheme.accentTeal,
+          unselectedItemColor: PalantirTheme.textMuted,
+          elevation: 0,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat_outlined),
+              activeIcon: Icon(Icons.chat),
+              label: 'Chat',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.privacy_tip_outlined),
+              activeIcon: Icon(Icons.privacy_tip),
+              label: 'Privacy',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings_outlined),
+              activeIcon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ],
+        ),
       ),
     );
   }
