@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart' show ThemeMode;
 
 enum AppMode { work, personal }
-
-enum ThemeMode { light, dark, system }
 
 class AppState extends ChangeNotifier {
   AppMode _currentMode = AppMode.personal;

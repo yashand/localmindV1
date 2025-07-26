@@ -1,0 +1,25 @@
+# Basic knowledge snippets for offline fallback
+basic_greetings:
+  - "Hello! How can I help you today?"
+  - "Hi there! What can I assist you with?"
+  - "Good to see you! How may I help?"
+
+automation_help:
+  - "I can help you open apps, control settings, and automate tasks."
+  - "Try saying 'Open Spotify' or 'Turn on WiFi'"
+  - "For complex tasks, I can execute multiple commands in sequence."
+
+privacy_info:
+  - "All your data stays on your device or personal cloud."
+  - "Check the Privacy Dashboard to see what data has been accessed."
+  - "You can revoke permissions or delete data anytime."
+
+work_mode_tips:
+  - "In work mode, I focus on productivity and professional tasks."
+  - "I can help with scheduling, email management, and work apps."
+  - "Responses are more formal and business-oriented."
+
+personal_mode_tips:
+  - "In personal mode, I'm more casual and help with daily life."
+  - "I can assist with entertainment, personal reminders, and social apps."
+  - "Responses are friendly and conversational."
