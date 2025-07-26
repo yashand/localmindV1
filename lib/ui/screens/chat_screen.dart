@@ -33,7 +33,6 @@ class _ChatScreenState extends State<ChatScreen> {
   ];
   
   String currentMode = 'personal'; // or 'work'
-  bool isConnected = true;
   bool isLoading = false;
 
   @override
@@ -86,52 +85,52 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
       ),
-      child: Row(
-        children: [
-          // Connection Indicator
-          Container(
-            width: 8,
-            height: 8,
-            decoration: BoxDecoration(
-              color: isConnected ? PalantirTheme.successGreen : PalantirTheme.accentOrange,
-              shape: BoxShape.circle,
-            ),
-          ),
-          SizedBox(width: 8),
-          Text(
-            isConnected ? 'CONNECTED' : 'OFFLINE',
-            style: TextStyle(
-              color: PalantirTheme.textMuted,
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1.2,
-            ),
-          ),
-          
-          Spacer(),
-          
-          // Mode Indicator
-          Consumer<AppState>(
-            builder: (context, appState, child) {
-              return ModeIndicator(
+      child: Consumer<AppState>(
+        builder: (context, appState, child) {
+          return Row(
+            children: [
+              // Connection Indicator
+              Container(
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: appState.isConnectedToOllama ? PalantirTheme.successGreen : PalantirTheme.accentOrange,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              SizedBox(width: 8),
+              Text(
+                appState.isConnectedToOllama ? 'CONNECTED' : 'OFFLINE',
+                style: TextStyle(
+                  color: PalantirTheme.textMuted,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              
+              Spacer(),
+              
+              // Mode Indicator
+              ModeIndicator(
                 mode: appState.currentMode.name,
                 onTap: () => _toggleMode(appState),
-              );
-            },
-          ),
-          
-          SizedBox(width: 16),
-          
-          // Settings Button
-          IconButton(
-            onPressed: () => _openSettings(),
-            icon: Icon(
-              Icons.settings_outlined,
-              color: PalantirTheme.textSecondary,
-              size: 20,
-            ),
-          ),
-        ],
+              ),
+              
+              SizedBox(width: 16),
+              
+              // Settings Button
+              IconButton(
+                onPressed: () => _openSettings(),
+                icon: Icon(
+                  Icons.settings_outlined,
+                  color: PalantirTheme.textSecondary,
+                  size: 20,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -154,76 +153,80 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget _buildEmptyState() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 64,
-            height: 64,
-            decoration: BoxDecoration(
-              color: PalantirTheme.backgroundSurface,
-              border: Border.all(color: PalantirTheme.borderColor),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Icon(
-              Icons.psychology_outlined,
-              size: 32,
-              color: PalantirTheme.accentTeal,
-            ),
-          ),
-          SizedBox(height: 24),
-          Text(
-            'LocalMind Ready',
-            style: TextStyle(
-              color: PalantirTheme.textPrimary,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Your privacy-first AI assistant.\nStart a conversation or use voice input.',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: PalantirTheme.textSecondary,
-              fontSize: 14,
-              height: 1.4,
-            ),
-          ),
-          SizedBox(height: 24),
-          if (!isConnected)
-            Container(
-              padding: EdgeInsets.all(16),
-              margin: EdgeInsets.symmetric(horizontal: 32),
-              decoration: BoxDecoration(
-                color: PalantirTheme.accentOrange.withOpacity(0.1),
-                border: Border.all(color: PalantirTheme.accentOrange.withOpacity(0.3)),
-                borderRadius: BorderRadius.circular(8),
+    return Consumer<AppState>(
+      builder: (context, appState, child) {
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: PalantirTheme.backgroundSurface,
+                  border: Border.all(color: PalantirTheme.borderColor),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  Icons.psychology_outlined,
+                  size: 32,
+                  color: PalantirTheme.accentTeal,
+                ),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.warning_outlined,
-                    color: PalantirTheme.accentOrange,
-                    size: 16,
+              SizedBox(height: 24),
+              Text(
+                'LocalMind Ready',
+                style: TextStyle(
+                  color: PalantirTheme.textPrimary,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Your privacy-first AI assistant.\nStart a conversation or use voice input.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: PalantirTheme.textSecondary,
+                  fontSize: 14,
+                  height: 1.4,
+                ),
+              ),
+              SizedBox(height: 24),
+              if (!appState.isConnectedToOllama)
+                Container(
+                  padding: EdgeInsets.all(16),
+                  margin: EdgeInsets.symmetric(horizontal: 32),
+                  decoration: BoxDecoration(
+                    color: PalantirTheme.accentOrange.withOpacity(0.1),
+                    border: Border.all(color: PalantirTheme.accentOrange.withOpacity(0.3)),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      'Ollama connection offline.\nUsing fallback responses.',
-                      style: TextStyle(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.warning_outlined,
                         color: PalantirTheme.accentOrange,
-                        fontSize: 12,
+                        size: 16,
                       ),
-                    ),
+                      SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Ollama connection offline.\nUsing fallback responses.',
+                          style: TextStyle(
+                            color: PalantirTheme.accentOrange,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-        ],
-      ),
+                ),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -242,7 +245,10 @@ class _ChatScreenState extends State<ChatScreen> {
       child: InputBar(
         controller: _messageController,
         onSend: _sendMessage,
-        onVoicePress: _startVoiceInput,
+        onVoiceResult: (text) {
+          _messageController.text = text;
+          _sendMessage();
+        },
         isLoading: isLoading,
       ),
     );
@@ -353,10 +359,6 @@ class _ChatScreenState extends State<ChatScreen> {
         );
       }
     });
-  }
-
-  void _startVoiceInput() {
-    // Implementation for voice input
   }
 
   void _openSettings() {

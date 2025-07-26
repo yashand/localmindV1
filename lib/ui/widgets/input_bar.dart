@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
+import 'palantir_voice_button.dart';
 
 class InputBar extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onSend;
-  final VoidCallback onVoicePress;
+  final Function(String) onVoiceResult;
   final bool isLoading;
 
   const InputBar({
     Key? key,
     required this.controller,
     required this.onSend,
-    required this.onVoicePress,
+    required this.onVoiceResult,
     this.isLoading = false,
   }) : super(key: key);
 
@@ -55,23 +57,9 @@ class InputBar extends StatelessWidget {
         ),
         SizedBox(width: 12),
         
-        // Voice Input Button
-        Container(
-          width: 44,
-          height: 44,
-          decoration: BoxDecoration(
-            color: PalantirTheme.backgroundSurface,
-            border: Border.all(color: PalantirTheme.borderColor),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: IconButton(
-            onPressed: onVoicePress,
-            icon: Icon(
-              Icons.mic_outlined,
-              color: PalantirTheme.textSecondary,
-              size: 20,
-            ),
-          ),
+        // Voice Input Button - styled to match Palantir theme
+        PalantirVoiceButton(
+          onVoiceResult: onVoiceResult,
         ),
         
         SizedBox(width: 12),
