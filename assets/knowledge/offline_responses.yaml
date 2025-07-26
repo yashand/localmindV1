@@ -1,0 +1,141 @@
+# LocalMind Offline Knowledge Base
+# Version: 1.0
+# Last Updated: 2025-01-26
+
+metadata:
+  version: "1.0"
+  total_responses: 45
+  categories: 8
+  languages: ["en"]
+  fallback_enabled: true
+
+# Core Greetings - Context Aware
+greetings:
+  morning:
+    - "Good morning! Ready to tackle the day? How can LocalMind help?"
+    - "Morning! What's on your agenda today?"
+    - "Hello! Starting your day right - what do you need?"
+  
+  afternoon:
+    - "Good afternoon! How's your day going? What can I help with?"
+    - "Afternoon! Need assistance with anything?"
+    - "Hi there! How can I make your afternoon more productive?"
+  
+  evening:
+    - "Good evening! Winding down or still working? How can I help?"
+    - "Evening! What can I assist you with?"
+    - "Hello! How can I help you finish your day strong?"
+  
+  general:
+    - "Hello! Your privacy-first assistant is ready. How can I help?"
+    - "Hi! LocalMind here - what would you like to accomplish?"
+    - "Welcome back! What can I help you with today?"
+
+# Enhanced Automation Guidance
+automation_help:
+  basic_commands:
+    - "I can open apps: 'Open Spotify', 'Launch Gmail', 'Start Calculator'"
+    - "System controls: 'Turn on WiFi', 'Enable Bluetooth', 'Adjust brightness'"
+    - "Try multi-step commands: 'Open Spotify and turn on WiFi'"
+  
+  advanced_examples:
+    - "Complex automation: 'Open Spotify, download Drake's new album, and set volume to 50%'"
+    - "Smart routines: 'Start my work day' or 'Evening wind-down routine'"
+    - "Context commands: 'Switch to work mode and open my calendar'"
+  
+  troubleshooting:
+    - "If automation fails, check app permissions in Settings"
+    - "Some actions need Accessibility Service enabled (Android)"
+    - "Voice commands work better in quiet environments"
+
+# Privacy & Security Information
+privacy_info:
+  data_protection:
+    - "🔒 All data stays on YOUR device or personal cloud - never external servers"
+    - "🛡️ Industry-standard AES-256 encryption protects your information"
+    - "👀 Privacy Dashboard shows exactly what data is accessed and when"
+  
+  user_control:
+    - "✅ Grant or revoke any permission instantly in Privacy Settings"
+    - "🗑️ Delete specific data types or wipe everything with one tap"
+    - "📊 Export your data anytime - it's yours, always"
+  
+  transparency:
+    - "📋 Complete audit log of every data access - fully searchable"
+    - "🔍 No hidden data collection - see exactly what LocalMind knows"
+    - "⚡ Offline-first design means you're always in control"
+
+# Work Mode Assistance
+work_mode:
+  capabilities:
+    - "📧 Professional email drafting with appropriate tone and signatures"
+    - "📅 Smart calendar management and meeting scheduling"
+    - "💼 Work app automation: Slack, Teams, Office apps, project tools"
+  
+  productivity:
+    - "⏰ Focus time management with notification filtering"
+    - "📈 Work routine automation: 'Start my 9 AM routine'"
+    - "🤝 Professional contact management and communication"
+  
+  context_switching:
+    - "🔄 Automatically switches based on work hours (9 AM - 6 PM)"
+    - "🏢 Location-based switching when at office WiFi"
+    - "📋 Manual override: 'Switch to work mode' anytime"
+
+# Personal Mode Assistance  
+personal_mode:
+  lifestyle:
+    - "🎵 Entertainment: Music, podcasts, streaming apps, and recommendations"
+    - "🏠 Smart home control and personal device automation"
+    - "👥 Social apps and casual communication assistance"
+  
+  daily_life:
+    - "⏰ Personal reminders, shopping lists, and habit tracking"
+    - "🍳 Recipe suggestions, meal planning, and grocery automation"
+    - "🎯 Personal goals tracking and motivation"
+  
+  relaxation:
+    - "😌 Evening routines: 'Wind down for the night'"
+    - "🧘 Wellness features: meditation reminders, exercise tracking"
+    - "🎮 Gaming and hobby-related automations"
+
+# Error Handling & Connectivity
+connection_issues:
+  laptop_offline:
+    - "📱 Running in offline mode - basic responses available"
+    - "🔄 Trying to reconnect to your laptop's Ollama server..."
+    - "💡 Check Tailscale connection or start Ollama server"
+  
+  automation_failed:
+    - "❌ Couldn't complete that action. Check if the app is installed."
+    - "🔧 Some automations need additional permissions - check Settings"
+    - "🔄 Retrying automation... Please wait a moment"
+  
+  voice_recognition:
+    - "🎤 Didn't catch that clearly. Try speaking closer to the microphone"
+    - "🔇 Check microphone permissions in device settings"
+    - "💬 You can also type your request if voice isn't working"
+
+# Learning & Adaptation
+learning_responses:
+  profile_building:
+    - "🧠 Learning your preferences to provide better assistance"
+    - "📊 Building your personal profile for smarter recommendations"
+    - "🎯 Adapting responses based on your usage patterns"
+  
+  feedback_requests:
+    - "👍 How was that response? Help me learn your preferences"
+    - "🔄 Should I handle this differently next time?"
+    - "💡 Any suggestions for improving this automation?"
+
+# Emergency & Safety
+emergency_responses:
+  data_safety:
+    - "🚨 Emergency data wipe completed - all personal data deleted"
+    - "🔒 All LocalMind data is encrypted and stored locally only"
+    - "⚠️ Privacy mode activated - minimal data collection enabled"
+  
+  system_issues:
+    - "🛠️ System issue detected - running diagnostic checks"
+    - "🔄 Restarting core services - please wait a moment"
+    - "📞 Check GitHub issues or contact support if problems persist"

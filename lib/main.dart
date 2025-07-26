@@ -5,6 +5,7 @@ import 'services/llm_service.dart';
 import 'services/voice_service.dart';
 import 'services/privacy_service.dart';
 import 'services/automation_service.dart';
+import 'services/offline_knowledge_service.dart';
 import 'models/user_profile.dart';
 import 'models/app_state.dart';
 import 'ui/screens/home_screen.dart';
@@ -24,6 +25,9 @@ void main() async {
       accessibility: KeychainAccessibility.first_unlock_this_device,
     ),
   );
+
+  // Initialize offline knowledge base
+  await OfflineKnowledgeService.initialize();
 
   runApp(LocalMindApp(storage: storage));
 }

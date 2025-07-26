@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logger/logger.dart';
 import '../models/chat_message.dart';
 import '../models/user_profile.dart';
+import 'offline_knowledge_service.dart';
 
 class LLMService {
   static const String _defaultOllamaUrl = 'http://localhost:11434';
@@ -54,7 +55,8 @@ class LLMService {
     {List<ChatMessage>? conversationHistory}
   ) async {
     if (!_isConnected) {
-      throw Exception('Not connected to Ollama. Please check your connection.');
+      _logger.w('Ollama not connected, using offline knowledge base');
+      return OfflineKnowledgeService.getSmartResponse(prompt, mode: mode);
     }
 
     try {
@@ -85,7 +87,7 @@ class LLMService {
       }
     } catch (e) {
       _logger.e('Error generating response: $e');
-      return _getFallbackResponse(prompt, mode);
+      return OfflineKnowledgeService.getSmartResponse(prompt, mode: mode);
     }
   }
 
@@ -122,30 +124,6 @@ Always prioritize user privacy and local processing. Be helpful but respect boun
     }).join('\n');
     
     return 'Recent conversation:\n$recentMessages';
-  }
-
-  String _getFallbackResponse(String prompt, String mode) {
-    // Simple keyword-based fallback responses
-    final lowerPrompt = prompt.toLowerCase();
-    
-    if (lowerPrompt.contains('hello') || lowerPrompt.contains('hi')) {
-      return mode == 'work' 
-          ? 'Hello! How can I assist you with your work today?'
-          : 'Hi there! What can I help you with?';
-    }
-    
-    if (lowerPrompt.contains('open') && lowerPrompt.contains('app')) {
-      return 'I can help you open apps. Could you specify which app you\'d like to open?';
-    }
-    
-    if (lowerPrompt.contains('time') || lowerPrompt.contains('what time')) {
-      final now = DateTime.now();
-      return 'The current time is ${now.hour}:${now.minute.toString().padLeft(2, '0')}.';
-    }
-    
-    return mode == 'work'
-        ? 'I\'m currently offline but ready to help. Could you rephrase your request?'
-        : 'I\'m in offline mode right now, but I\'m here to help however I can!';
   }
 
   bool get isConnected => _isConnected;
